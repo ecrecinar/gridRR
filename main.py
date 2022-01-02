@@ -38,10 +38,12 @@ def create_grid(step_size, lat, lng):
     # calculate the sw corner for the center grid, then step back once in each direction to find the grid's sw corner.
     transformed_sw = (((int)(transformed_loc[0] / step_size)) * step_size - step_size,
                       ((int)(transformed_loc[1] / step_size)) * step_size - step_size)
-    transformed_ne = transformed_sw[0] + (3 * step_size), transformed_sw[1] + (3 * step_size)
+    transformed_ne = transformed_sw[0] + \
+        (3 * step_size), transformed_sw[1] + (3 * step_size)
     print(transformed_sw)
     print(transformed_ne)
     grid_points = []
+    cells = [[] for _ in range(9)]
     x = transformed_sw[0]
     while x <= transformed_ne[0]:
         y = transformed_sw[1]
@@ -52,6 +54,20 @@ def create_grid(step_size, lat, lng):
             y += step_size
         x += step_size
 
+    X = []
+    Y = []
+
+    for i in range(len(grid_points)):
+        print(grid_points[i].x, ",", grid_points[i].y)
+        X.append(grid_points[i].x)
+        Y.append(grid_points[i].y)
+
+    i = 1
+    plt.close()
+    plt.scatter(Y, X)
+    plt.ticklabel_format(useOffset=False)
+    plt.scatter([Y[i], Y[i+1], Y[i+4], Y[i+5]], [X[i], X[i+1], X[i+4], X[i+5]])
+    plt.show()
 
 
 def RR(cells, probability):
@@ -79,4 +95,4 @@ def RR(cells, probability):
 
 # LDP_grid = gridRR(STEPSIZE, LAT, LNG, PROB)
 
-create_grid(100, 0, 0)
+create_grid(100, 10.0, 0.0)
