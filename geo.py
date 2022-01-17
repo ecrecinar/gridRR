@@ -69,6 +69,7 @@ def gridify(trajectory, step_size, rr_prob=1):
     for point in trajectory:
         cells = local_grid(step_size, point[0], point[1])
         index = RR(rr_prob)
-        gridified_trajectory.append(Polygon(cells[index]))
+        timestamp = point[2]
+        gridified_trajectory.append((Polygon(cells[index]), timestamp))
 
     return gridified_trajectory

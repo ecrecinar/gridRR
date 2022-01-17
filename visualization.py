@@ -12,7 +12,7 @@ def plot_cell(cell: Polygon, color="blue", alpha=0.3):
 
 def plot_trajectory(cells, color="blue", alpha=0.3):
     for cell in cells:
-        plot_cell(cell, color=color, alpha=alpha)
+        plot_cell(cell[0], color=color, alpha=alpha)
 
 
 def plot_trajectories(gridified_trajectories, directory, show_result=False):
