@@ -15,14 +15,16 @@ def plot_trajectory(cells, color="blue", alpha=0.3):
         plot_cell(cell, color=color, alpha=alpha)
 
 
-def plot_trajectories(gridified_trajectories):
-    plt.figure(figsize=(10, 10), dpi=1000)
+def plot_trajectories(gridified_trajectories, directory, show_result=False):
+    plt.figure(figsize=(10, 10))
     index = 0
     for gt in gridified_trajectories:
         plot_trajectory(gt, color=colors[index])
         index += 1
         index %= len(colors)
-    plt.savefig('demo.png', transparent=True)
+    plt.savefig(directory + "/result.png", transparent=True, dpi=1000)
+    if show_result:
+        plt.show()
     plt.close()
 
 

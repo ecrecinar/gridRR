@@ -1,18 +1,21 @@
 import geo
 from utils import colors
 from visualization import *
-import matplotlib.pyplot as plt
 from matplotlib.ticker import NullFormatter, FixedLocator
 import data_processing as dp
-import numpy as np
+import os
 
-PROB = 0.82
-STEPSIZE = 10
+DEFAULT_PROB = 0.82
+DEFAULT_STEPSIZE = 20
 
-data = dp.get_trajectories()
 
-gts = []
-for trajectory in data:
-    gts.append(geo.gridify(trajectory=trajectory, step_size=5, rr_prob=1))
-
-plot_trajectories(gts)
+def run(step_size=DEFAULT_STEPSIZE, rr_prob=DEFAULT_PROB, show_result=False):
+    data = dp.get_trajectories()
+    current_time = datetime.now().strftime("%H-%M-%S--%d-%m-%Y")
+    directory = "experiments/experiment-" + current_time
+    os.makedirs(directory)
+    gts = []
+    for trajectory in data:
+        gts.append(geo.gridify(trajectory=trajectory,
+                   step_size=step_size, rr_prob=rr_prob))
+    plot_trajectories(gts, directory, show_result)
