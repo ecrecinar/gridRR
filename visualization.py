@@ -34,6 +34,8 @@ def plot_trajectories(gridified_trajectories, directory, show_result=False):
 
 def heatmap(directory, show_result):
     # WARNING: We highly suggest you do not lay your eyes on this abomination of a function. You've been warned.
+    # We also totally yanked it from someone else: https://www.geodose.com/2018/01/creating-heatmap-in-python-from-scratch.html
+    
     x = []
     y = []
 

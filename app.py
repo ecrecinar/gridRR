@@ -96,12 +96,15 @@ def ask_show_result():
 
 
 while True:
-    user_input = input("Enter command. Type \"help\" for help.\n> ")
+    user_input = input("Enter command. Type \"help\" for a list of commands.\n> ")
     if user_input == "help":
-        print("Commands:")
-        print("run: Run the experiment.")
+        print("\nCommands:")
+        print("run: Run an experiment.")
+        print("help: Show this list.")
+        print("about: Show about info.")
         print("exit: Exit out of the program.\n")
     elif user_input == "run":
+        print("")
         dataset = ask_dataset()
         step_size = ask_step_size()
         rr_prob = ask_rr_prob()
@@ -112,6 +115,11 @@ while True:
         print("...")
         grr.run(dataset, step_size, rr_prob, show_result, start_time, end_time)
         print("Finished.")
+    elif user_input == "about":
+        print("\nGridRR was developed by Ecre Çınar and Michael Bora Sanuk as the final")
+        print("project for the COMP430: Data Privacy and Security course, Fall 2021.\n")
     elif user_input == "exit":
         print("Bye!")
         break
+    else:
+        print("Unkown command.")
