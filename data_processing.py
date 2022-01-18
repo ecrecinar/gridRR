@@ -1,3 +1,4 @@
+import json
 from pathlib import Path
 import os
 
@@ -29,5 +30,14 @@ def get_trajectories(dataset, start_time, end_time):
     return trajectories
 
 
-# TODO: Write a function that saves the gridified trajectory
-# https://stackoverflow.com/questions/62046624/how-to-save-shapely-geometry-into-a-file-and-load-it-later-into-a-variable
+def save_gts(gridified_trajectories, directory):
+    dict = {}
+    for gt in gridified_trajectories:
+        for cell in gt:
+            id = str(*cell[0].exterior.centroid.coords)
+            if id not in dict:
+                dict[id] = 1
+            else:
+                dict[id] += 1
+    with open(directory + "/data.json", "w") as fp:
+        json.dump(dict, fp)
