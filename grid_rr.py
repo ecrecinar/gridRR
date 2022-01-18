@@ -18,3 +18,5 @@ def run(dataset, step_size, rr_prob, show_result, start_time, end_time):
         gts.append(geo.gridify(trajectory=trajectory,
                    step_size=step_size, rr_prob=rr_prob))
     plot_trajectories(gts, directory, show_result)
+    dp.save_gts(gts, directory)
+    heatmap(directory, show_result)
